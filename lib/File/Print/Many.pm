@@ -4,6 +4,30 @@ use warnings;
 use strict;
 use Carp;
 
+=head1 NAME
+
+File::Print::Many - Print to more than one file descriptor at once
+
+=head1 VERSION
+
+Version 0.01
+
+=cut
+
+our $VERSION = '0.01';
+
+=head1 SYNOPSIS
+
+Print to more than one file descriptor at once.
+
+=head1 SUBROUTINES/METHODS
+
+=head2 new
+
+	my $many = File::Print::Many(fds => \($fout1, $fout2));
+
+=cut
+
 sub new {
 	my $proto = shift;
 	my $class = ref($proto) || $proto;
@@ -30,6 +54,14 @@ sub new {
 	}, $class;
 }
 
+=head2 print
+
+Send output.
+
+	print $many "hello, world!\n";
+
+=cut
+
 sub PRINT {
 	my $self = shift;
 
@@ -37,3 +69,57 @@ sub PRINT {
 		print $fd @_;
 	}
 }
+
+=head1 AUTHOR
+
+Nigel Horne, C<< <njh at bandsman.co.uk> >>
+
+=head1 BUGS
+
+Please report any bugs or feature requests to C<bug-file-print-many at rt.cpan.org>,
+or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=File-Print-Many>.
+I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
+
+=head1 SEE ALSO
+
+L<HTTP::BrowserDetect>
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc File::Print::Many
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=File-Print-Many>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/File-Print-Many>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/File-Print-Many>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/File-Print-Many/>
+
+=back
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2018 Nigel Horne.
+
+This program is released under the following licence: GPL
+
+=cut
+
+1;
