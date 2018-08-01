@@ -3,6 +3,7 @@ package File::Print::Many;
 use warnings;
 use strict;
 use Carp;
+require Tie::Handle;
 
 =head1 NAME
 
@@ -15,6 +16,7 @@ Version 0.01
 =cut
 
 our $VERSION = '0.01';
+our @ISA = ('Tie::Handle');
 
 =head1 SYNOPSIS
 
@@ -24,7 +26,7 @@ Print to more than one file descriptor at once.
 
 =head2 new
 
-	my $many = File::Print::Many(fds => \($fout1, $fout2));
+	my $many = File::Print::Many(fds => [$fout1, $fout2]);
 
 =cut
 
@@ -37,6 +39,8 @@ sub new {
 	my %params;
 	if(ref($_[0]) eq 'HASH') {
 		%params = %{$_[0]};
+	} elsif(ref($_[0]) eq 'ARRAY') {
+		$params{'fds'} = shift;
 	} elsif(ref($_[0])) {
 		Carp::croak('Usage: new(fds => \@array)');
 	} elsif(scalar(@_) % 2 == 0) {
@@ -67,6 +71,19 @@ sub PRINT {
 
 	foreach my $fd(@{$self->{'_fds'}}) {
 		print $fd @_;
+	}
+}
+
+sub TIEHANDLE {
+	bless \"$_[0]",$_[0]
+}
+
+sub print {
+	my $self = shift;
+	my @data = @_;
+
+	foreach my $fd(@{$self->{'_fds'}}) {
+		print $fd @data;
 	}
 }
 
