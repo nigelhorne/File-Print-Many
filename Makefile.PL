@@ -22,7 +22,8 @@ WriteMakefile(
 		'Test::TempDir::Tiny' => 0,
 		# 'Test::Kwalitee' => 0,
 		'autodie' => 0,
-		'Test::Warn' => 0
+		'Test::Warn' => 0,
+		'warnings::unused' => 0,
 	},
 	PREREQ_PM => {
 		'Carp' => 0,
