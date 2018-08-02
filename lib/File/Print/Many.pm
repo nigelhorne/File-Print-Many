@@ -50,7 +50,8 @@ sub new {
 		$params{'fds'} = shift;
 	}
 
-	if(ref($params{fds}) ne 'ARRAY') {
+	if((ref($params{fds}) ne 'ARRAY') ||
+	   !defined(@{$params{fds}}[0])) {
 		Carp::croak('Usage: new(fds => \@array)');
 	}
 
@@ -63,7 +64,7 @@ sub new {
 
 Send output.
 
-	print $many "hello, world!\n";
+	$many->print("hello, world!\n");
 
 =cut
 

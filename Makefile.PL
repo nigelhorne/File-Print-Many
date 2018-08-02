@@ -15,6 +15,7 @@ WriteMakefile(
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
 		'File::Spec' => 0,
+		'Test::Carp' => 0,
 		'Test::Exception' => 0.42,
 		'Test::Most' => 0,
 		'Test::NoWarnings' => 0,

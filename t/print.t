@@ -3,10 +3,11 @@
 use strict;
 use warnings;
 use autodie;
-use Test::Most tests => 8;
+use Test::Most tests => 13;
 use Test::NoWarnings;
 use Test::TempDir::Tiny;
 use File::Spec;
+use Test::Carp;
 
 BEGIN {
 	use_ok('File::Print::Many');
@@ -100,4 +101,20 @@ PRINT: {
 
 	unlink $tmp1;
 	unlink $tmp2;
+
+	does_croak(sub {
+		my $foo = File::Print::Many->new();
+	});
+	does_croak(sub {
+		my $foo = File::Print::Many->new(fds => { foo => 'bar' });
+	});
+	does_croak(sub {
+		my $foo = File::Print::Many->new(fds => undef);
+	});
+	does_croak(sub {
+		my $foo = File::Print::Many->new({ fds => [ undef ] });
+	});
+	does_croak(sub {
+		my $foo = File::Print::Many->new({ fds => undef });
+	});
 }
