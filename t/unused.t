@@ -20,16 +20,15 @@ if($ENV{AUTHOR_TESTING}) {
 
 if($can_test) {
 	BEGIN {
-		if($ENV{RELEASE_TESTING}) {
+		if($ENV{AUTHOR_TESTING}) {
 			use_ok('File::Print::Many');
 			use warnings::unused;
 		}
 	}
 
-	if(not $ENV{RELEASE_TESTING}) {
+	if(not $ENV{AUTHOR_TESTING}) {
 		plan(skip_all => 'Author tests not required for installation');
 	} else {
-		new_ok('CGI::Lingua' => [ supported => ['en-gb'] ]);
 		new_ok('File::Print::Many' => [ fds => [ *STDERR ] ]);
 		plan tests => 2;
 	}
