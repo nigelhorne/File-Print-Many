@@ -42,12 +42,12 @@ sub new {
 		%params = %{$_[0]};
 	} elsif(ref($_[0]) eq 'ARRAY') {
 		$params{'fds'} = shift;
-	} elsif(ref($_[0])) {
-		Carp::croak('Usage: new(fds => \@array)');
+	# } elsif(ref($_[0])) {
+		# Carp::croak('Usage: new(fds => \@array)');
 	} elsif(scalar(@_) % 2 == 0) {
 		%params = @_;
 	} else {
-		$params{'fds'} = shift;
+		Carp::croak('Usage: new(fds => \@array)');
 	}
 
 	if((ref($params{fds}) ne 'ARRAY') ||
@@ -68,17 +68,17 @@ Send output.
 
 =cut
 
-sub PRINT {
-	my $self = shift;
+# sub PRINT {
+	# my $self = shift;
+# 
+	# foreach my $fd(@{$self->{'_fds'}}) {
+		# print $fd @_;
+	# }
+# }
 
-	foreach my $fd(@{$self->{'_fds'}}) {
-		print $fd @_;
-	}
-}
-
-sub TIEHANDLE {
-	bless \"$_[0]",$_[0];
-}
+# sub TIEHANDLE {
+	# bless \"$_[0]",$_[0];
+# }
 
 sub print {
 	my $self = shift;
