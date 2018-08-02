@@ -18,6 +18,8 @@ WriteMakefile(
 		'Test::Most' => 0,
 		'Test::NoWarnings' => 0,
 		'Test::CleanNamespaces' => 0,
+		'Test::Requires' => 0,
+		'Test::TempDir::Tiny' => 0,
 		# 'Test::Kwalitee' => 0,
 		'autodie' => 0,
 		'Test::Warn' => 0
