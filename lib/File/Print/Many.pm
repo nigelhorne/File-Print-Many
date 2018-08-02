@@ -3,6 +3,7 @@ package File::Print::Many;
 use warnings;
 use strict;
 use Carp;
+use namespace::autoclean;
 require Tie::Handle;
 
 =head1 NAME
