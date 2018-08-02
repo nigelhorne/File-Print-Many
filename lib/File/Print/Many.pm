@@ -75,7 +75,7 @@ sub PRINT {
 }
 
 sub TIEHANDLE {
-	bless \"$_[0]",$_[0]
+	bless \"$_[0]",$_[0];
 }
 
 sub print {
