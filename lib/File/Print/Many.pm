@@ -103,8 +103,6 @@ automatically be notified of progress on your bug as I make changes.
 
 =head1 SEE ALSO
 
-L<HTTP::BrowserDetect>
-
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
