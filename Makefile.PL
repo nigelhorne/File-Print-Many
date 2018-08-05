@@ -25,8 +25,6 @@ WriteMakefile(
 		# 'Test::Kwalitee' => 0,
 		'autodie' => 0,
 		'Test::Warn' => 0,
-		'warnings::unused' => 0,
-		'WWW::RT::CPAN' => 0
 	},
 	PREREQ_PM => {
 		'Carp' => 0,
