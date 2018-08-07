@@ -14,6 +14,7 @@ WriteMakefile(
 	  : ()),
 	PL_FILES	=> {},
 	TEST_REQUIRES => {
+		'File::Path' => 2.15,
 		'File::Spec' => 0,
 		'Test::Carp' => 0,
 		'Test::Exception' => 0.42,
@@ -21,7 +22,7 @@ WriteMakefile(
 		'Test::NoWarnings' => 0,
 		'Test::CleanNamespaces' => 0,
 		'Test::Requires' => 0,
-		'Test::TempDir::Tiny' => 0.018,
+		'Test::TempDir::Tiny' => 0,
 		# 'Test::Kwalitee' => 0,
 		'autodie' => 0,
 		'Test::Warn' => 0,
