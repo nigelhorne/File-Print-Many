@@ -27,7 +27,7 @@ Print to more than one file descriptor at once.
 
 =head2 new
 
-	my $many = File::Print::Many(fds => [$fout1, $fout2]);
+    my $many = File::Print::Many(fds => [$fout1, $fout2]);
 
 =cut
 
@@ -64,7 +64,8 @@ sub new {
 
 Send output.
 
-	$many->print("hello, world!\n");
+    $many->print("hello, world!\n");
+    $many->print('hello,', "world!\n");
 
 =cut
 
