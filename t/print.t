@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 use autodie;
-use Test::Most tests => 15;
+use Test::Most tests => 16;
 use Test::NoWarnings;
 use Test::TempDir::Tiny;
 use File::Spec;
@@ -122,5 +122,8 @@ PRINT: {
 	});
 	does_croak(sub {
 		my $foo = File::Print::Many->new({ fds => undef });
+	});
+	does_croak(sub {
+		my $foo = File::Print::Many->new('bar');
 	});
 }
