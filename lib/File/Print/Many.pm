@@ -27,7 +27,10 @@ Print to more than one file descriptor at once.
 
 =head2 new
 
-    my $many = File::Print::Many(fds => [$fout1, $fout2]);
+    use File::Print::Many;
+    open(my $fout1, '>', '/tmp/foo');
+    open(my $fout2, '>', '/tmp/bar');
+    my $many = File::Print::Many->new(fds => [$fout1, $fout2]);
 
 =cut
 
@@ -71,7 +74,7 @@ Send output.
 
 # sub PRINT {
 	# my $self = shift;
-# 
+#
 	# foreach my $fd(@{$self->{'_fds'}}) {
 		# print $fd @_;
 	# }
@@ -126,13 +129,9 @@ L<http://annocpan.org/dist/File-Print-Many>
 
 L<http://cpanratings.perl.org/d/File-Print-Many>
 
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/File-Print-Many/>
-
 =back
 
-=head1 LICENSE AND COPYRIGHT
+=head1 LICENCE AND COPYRIGHT
 
 Copyright 2018 Nigel Horne.
 

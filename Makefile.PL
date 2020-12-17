@@ -41,11 +41,10 @@ WriteMakefile(
 		'meta-spec' => { version => 2 },
 		resources => {
 			repository => {
-			type => 'git',
-			url => 'git://github.com/nigelhorne/File-Print-Many.git',
-			web => 'https://github.com/nigelhorne/File-Print-Many',
-			},
-			bugtracker => {
+				type => 'git',
+				url => 'git://github.com/nigelhorne/File-Print-Many.git',
+				web => 'https://github.com/nigelhorne/File-Print-Many',
+			}, bugtracker => {
 				web => 'https://rt.cpan.org/Public/Dist/Display.html?Name=File-Print-Many',
 				mailto => 'bug-File-Print-Many@rt.cpan.org'
 			}
