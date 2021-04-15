@@ -4,7 +4,7 @@ use warnings;
 use strict;
 use Carp;
 use namespace::autoclean;
-require Tie::Handle;
+# require Tie::Handle;
 
 =head1 NAME
 
@@ -17,7 +17,7 @@ Version 0.01
 =cut
 
 our $VERSION = '0.01';
-our @ISA = ('Tie::Handle');
+# our @ISA = ('Tie::Handle');
 
 =head1 SYNOPSIS
 

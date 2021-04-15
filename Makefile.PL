@@ -29,7 +29,7 @@ WriteMakefile(
 	},
 	PREREQ_PM => {
 		'Carp' => 0,
-		'Tie::Handle' => 0,
+		# 'Tie::Handle' => 0,
 		'namespace::autoclean' => 0,
 	},
 	dist		=> { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
