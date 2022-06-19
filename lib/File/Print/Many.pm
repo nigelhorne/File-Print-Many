@@ -68,7 +68,8 @@ sub new {
 Send output.
 
     $many->print("hello, world!\n");
-    $many->print('hello,', "world!\n");
+    $many->print('hello, ', "world!\n");
+    $many->print('hello, ')->print("world!\n");
 
 =cut
 
@@ -91,6 +92,8 @@ sub print {
 	foreach my $fd(@{$self->{'_fds'}}) {
 		print $fd @data;
 	}
+
+	return $self;
 }
 
 =head1 AUTHOR
@@ -133,9 +136,9 @@ L<http://cpanratings.perl.org/d/File-Print-Many>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright 2018 Nigel Horne.
+Copyright 2018-2022 Nigel Horne.
 
-This program is released under the following licence: GPL
+This program is released under the following licence: GPL2
 
 =cut
 
