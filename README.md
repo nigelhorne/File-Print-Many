@@ -4,7 +4,7 @@ File::Print::Many - Print to more than one file descriptor at once
 
 # VERSION
 
-Version 0.01
+Version 0.02
 
 # SYNOPSIS
 
@@ -14,13 +14,18 @@ Print to more than one file descriptor at once.
 
 ## new
 
-        my $many = File::Print::Many(fds => [$fout1, $fout2]);
+    use File::Print::Many;
+    open(my $fout1, '>', '/tmp/foo');
+    open(my $fout2, '>', '/tmp/bar');
+    my $many = File::Print::Many->new(fds => [$fout1, $fout2]);
 
 ## print
 
 Send output.
 
-        $many->print("hello, world!\n");
+    $many->print("hello, world!\n");
+    $many->print('hello, ', "world!\n");
+    $many->print('hello, ')->print("world!\n");
 
 # AUTHOR
 
@@ -56,12 +61,8 @@ You can also look for information at:
 
     [http://cpanratings.perl.org/d/File-Print-Many](http://cpanratings.perl.org/d/File-Print-Many)
 
-- Search CPAN
+# LICENCE AND COPYRIGHT
 
-    [http://search.cpan.org/dist/File-Print-Many/](http://search.cpan.org/dist/File-Print-Many/)
+Copyright 2018-2022 Nigel Horne.
 
-# LICENSE AND COPYRIGHT
-
-Copyright 2018 Nigel Horne.
-
-This program is released under the following licence: GPL
+This program is released under the following licence: GPL2
