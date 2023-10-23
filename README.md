@@ -18,6 +18,8 @@ Print to more than one file descriptor at once.
     open(my $fout1, '>', '/tmp/foo');
     open(my $fout2, '>', '/tmp/bar');
     my $many = File::Print::Many->new(fds => [$fout1, $fout2]);
+    print $fout1 "this only goes to /tmp/foo\n";
+    $many->print("this goes to both files\n");
 
 ## print
 
