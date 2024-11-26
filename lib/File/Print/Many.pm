@@ -36,39 +36,29 @@ Print to more than one file descriptor at once.
 
 =cut
 
-sub new {
-	my $class = shift;
+sub new
+{
+	my ($class, @args) = @_;
 
-	return unless(defined($class));
+	Carp::croak('Usage: new(fds => \@array)') unless(defined $class);
 
 	# Handle hash or hashref arguments
-	my %args;
-	if(ref($_[0]) eq 'HASH') {
-		%args = %{$_[0]};
-	} elsif(ref($_[0]) eq 'ARRAY') {
-		$args{'fds'} = shift;
-	# } elsif(ref($_[0])) {
-		# Carp::croak('Usage: new(fds => \@array)');
-	} elsif(scalar(@_) % 2 == 0) {
-		%args = @_;
-	}
+	my %args = ref $args[0] eq 'HASH' ? %{ $args[0] }
+		: ref $args[0] eq 'ARRAY' ? (fds => $args[0])
+		: @args % 2 == 0 ? @args
+		: Carp::croak('Usage: new(fds => \@array)');
 
+	# If cloning an object, merge arguments
 	if(Scalar::Util::blessed($class)) {
-		# If $class is an object, clone it with new arguments
-		return bless { %{$class}, %args }, ref($class);
-	} elsif((scalar(keys %args)) == 0) {
-		Carp::croak('Usage: new(fds => \@array)');
+		return bless { %$class, %args }, ref($class);
 	}
 
-	if((ref($args{fds}) ne 'ARRAY') ||
-	   !defined(@{$args{fds}}[0])) {
-		Carp::croak('Usage: new(fds => \@array)');
-	}
+	# Validate file descriptor array
+	Carp::croak('Usage: new(fds => \@array)') 
+		if(ref $args{fds} ne 'ARRAY') || (!defined @{$args{fds}}[0]);
 
-	# Return the blessed object
-	return bless {
-		_fds => $args{'fds'}
-	}, $class;
+	# Create the object
+	return bless { _fds => $args{fds} }, $class;
 }
 
 =head2 print
@@ -93,9 +83,9 @@ Send output.
 	# bless \"$_[0]",$_[0];
 # }
 
-sub print {
-	my $self = shift;
-	my @data = @_;
+sub print
+{
+	my ($self, @data) = @_;
 
 	foreach my $fd(@{$self->{'_fds'}}) {
 		print $fd @data;
