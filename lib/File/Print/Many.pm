@@ -37,31 +37,37 @@ Print to more than one file descriptor at once.
 =cut
 
 sub new {
-	my $proto = shift;
-	my $class = ref($proto) || $proto;
+	my $class = shift;
 
 	return unless(defined($class));
 
-	my %params;
+	# Handle hash or hashref arguments
+	my %args;
 	if(ref($_[0]) eq 'HASH') {
-		%params = %{$_[0]};
+		%args = %{$_[0]};
 	} elsif(ref($_[0]) eq 'ARRAY') {
-		$params{'fds'} = shift;
+		$args{'fds'} = shift;
 	# } elsif(ref($_[0])) {
 		# Carp::croak('Usage: new(fds => \@array)');
 	} elsif(scalar(@_) % 2 == 0) {
-		%params = @_;
-	} else {
+		%args = @_;
+	}
+
+	if(Scalar::Util::blessed($class)) {
+		# If $class is an object, clone it with new arguments
+		return bless { %{$class}, %args }, ref($class);
+	} elsif((scalar(keys %args)) == 0) {
 		Carp::croak('Usage: new(fds => \@array)');
 	}
 
-	if((ref($params{fds}) ne 'ARRAY') ||
-	   !defined(@{$params{fds}}[0])) {
+	if((ref($args{fds}) ne 'ARRAY') ||
+	   !defined(@{$args{fds}}[0])) {
 		Carp::croak('Usage: new(fds => \@array)');
 	}
 
+	# Return the blessed object
 	return bless {
-		_fds => $params{'fds'}
+		_fds => $args{'fds'}
 	}, $class;
 }
 
