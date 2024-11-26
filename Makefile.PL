@@ -25,6 +25,7 @@ WriteMakefile(
 	TEST_REQUIRES => {
 		'File::Path' => 2.15,
 		'File::Spec' => 0,
+		'File::Temp' => 0,
 		'Test::Carp' => 0,
 		'Test::DescribeMe' => 0,
 		'Test::Exception' => 0.42,
