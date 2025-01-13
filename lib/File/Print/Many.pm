@@ -54,7 +54,7 @@ sub new
 	}
 
 	# Validate file descriptor array
-	Carp::croak('Usage: new(fds => \@array)') 
+	Carp::croak('Usage: new(fds => \@array)')
 		if(ref $args{fds} ne 'ARRAY') || (!defined @{$args{fds}}[0]);
 
 	# Create the object
@@ -87,6 +87,12 @@ sub print
 {
 	my ($self, @data) = @_;
 
+	# Sanity check: Ensure _fds exists and is an array reference
+	unless(ref $self->{'_fds'} eq 'ARRAY') {
+		die "BUG: Invalid file descriptors: '_fds' must be an array reference.";
+	}
+
+	# Print data to each file descriptor
 	foreach my $fd(@{$self->{'_fds'}}) {
 		print $fd @data;
 	}
