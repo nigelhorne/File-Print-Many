@@ -89,7 +89,7 @@ sub print
 
 	# Sanity check: Ensure _fds exists and is an array reference
 	unless(ref $self->{'_fds'} eq 'ARRAY') {
-		die "BUG: Invalid file descriptors: '_fds' must be an array reference.";
+		die "BUG: Invalid file descriptors: '_fds' must be an array reference";
 	}
 
 	# Print data to each file descriptor
