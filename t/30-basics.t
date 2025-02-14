@@ -31,8 +31,8 @@ close($fh1);
 close($fh2);
 
 # Verify the contents of the files
-open(my $rfh1, '<', $file1->filename) or die "Cannot open file: $!";
-open(my $rfh2, '<', $file2->filename) or die "Cannot open file: $!";
+open(my $rfh1, '<', $file1->filename()) or die "Cannot open file: $!";
+open(my $rfh2, '<', $file2->filename()) or die "Cannot open file: $!";
 
 my $content1 = do { local $/; <$rfh1> };
 my $content2 = do { local $/; <$rfh2> };

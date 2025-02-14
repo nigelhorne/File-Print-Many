@@ -42,6 +42,7 @@ WriteMakefile(
 	},
 	PREREQ_PM => {
 		'Carp' => 0,
+		'Scalar::Util' => 0,
 		# 'Tie::Handle' => 0,
 		'namespace::autoclean' => 0,
 	}, dist => $dist,
