@@ -77,18 +77,6 @@ Send output.
 
 =cut
 
-# sub PRINT {
-	# my $self = shift;
-#
-	# foreach my $fd(@{$self->{'_fds'}}) {
-		# print $fd @_;
-	# }
-# }
-
-# sub TIEHANDLE {
-	# bless \"$_[0]",$_[0];
-# }
-
 sub print
 {
 	my ($self, @data) = @_;
@@ -107,6 +95,32 @@ sub print
 
 	return $self;
 }
+
+# This code would add support for this, but I don't need it
+# tie *MULTI, 'File::Print::Many', fds => [$fh1, $fh2];
+# print MULTI "This goes to both files\n";
+
+# =head2 TIEHANDLE
+#
+# Allows the object to be tied to a filehandle.
+#
+# =cut
+#
+# sub TIEHANDLE {
+    # my ($class, @args) = @_;
+    # return $class->new(@args);
+# }
+#
+# =head2 PRINT
+#
+# Handles the 'print' operation when tied to a filehandle.
+#
+# =cut
+#
+# sub PRINT {
+    # my $self = shift;
+    # $self->print(@_);
+# }
 
 =head1 AUTHOR
 
