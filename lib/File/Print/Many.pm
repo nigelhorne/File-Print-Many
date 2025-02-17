@@ -13,11 +13,11 @@ File::Print::Many - Print to more than one file descriptor at once
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 # our @ISA = ('Tie::Handle');
 
 =head1 SYNOPSIS
@@ -56,7 +56,7 @@ sub new
 
 	# Validate file descriptor array
 	Carp::croak('Usage: new(fds => \@array)')
-		if(ref $args{fds} ne 'ARRAY') || (!defined @{$args{fds}}[0]);
+		if(ref($args{'fds'}) ne 'ARRAY') || (!defined @{$args{fds}}[0]);
 
 	# Ensure all elements in fds are valid filehandles
 	foreach my $fd (@{$args{fds}}) {
@@ -160,7 +160,7 @@ L<http://annocpan.org/dist/File-Print-Many>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright 2018-2023 Nigel Horne.
+Copyright 2018-2025 Nigel Horne.
 
 This program is released under the following licence: GPL2
 
