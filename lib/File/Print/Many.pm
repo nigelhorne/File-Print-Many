@@ -22,7 +22,7 @@ our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
-Print to more than one file descriptor at once.
+Print to more than one file descriptor at once for files that have already been opened.
 
 =head1 SUBROUTINES/METHODS
 

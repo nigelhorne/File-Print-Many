@@ -8,7 +8,7 @@ Version 0.04
 
 # SYNOPSIS
 
-Print to more than one file descriptor at once.
+Print to more than one file descriptor at once for files that have already been opened.
 
 # SUBROUTINES/METHODS
 
