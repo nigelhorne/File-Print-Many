@@ -1,5 +1,8 @@
 Revision history for File-Print-Many
 
+0.05
+	Improved filehandle validation - checking if the arg actually is an ope file handle
+
 0.04	Mon Feb 17 07:58:49 EST 2025
 	Use gtar to create a distribution on Macs
 	Use Test::DescribeMe to simplify tests

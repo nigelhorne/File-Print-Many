@@ -3,7 +3,7 @@ package File::Print::Many;
 use warnings;
 use strict;
 use Carp;
-use Scalar::Util;
+use Scalar::Util 'openhandle';
 use namespace::autoclean;
 # require Tie::Handle;
 
@@ -51,7 +51,9 @@ sub new
 
 	# If cloning an object, merge arguments
 	if(Scalar::Util::blessed($class)) {
-		return bless { %$class, %args }, ref($class);
+		my %new = %$class;
+		$new{_fds} = $args{fds} if exists $args{fds};
+		return bless \%new, ref $class;
 	}
 
 	# Validate file descriptor array
@@ -60,7 +62,7 @@ sub new
 
 	# Ensure all elements in fds are valid filehandles
 	foreach my $fd (@{$args{fds}}) {
-		Carp::croak('Invalid filehandle') unless(defined fileno($fd));
+		Carp::croak('Invalid filehandle') unless openhandle($fd);
 	}
 
 	# Create the object
